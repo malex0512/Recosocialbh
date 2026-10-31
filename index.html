@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-				<!-- This website was created in Funnelish. https://funnelish.com -->
-				<!-- Last Published: 2026-10-26 22:28:21 +0000 UTC -->
 				<html lang="en">
 					<head>
 
@@ -22,9 +20,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
 						<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 						<link rel="preconnect" href="https://img.funnelish.com" crossorigin>
-						<link rel="preload" href="/core.min.js" as="script" >
-						<link rel="preload" href="/core.min.css" as="style" >
-
+												
 						<meta charset="UTF-8">
 						<meta http-equiv="X-UA-Compatible" content="ie=edge">
 						<meta name="description" content="">
@@ -70,8 +66,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 						
 						<script>window.APPS = [];let APPS = window.APPS;</script>
 
-						<link async rel="stylesheet" href="/core.min.css" >
-
+						
 						<!-- lazysizes! -->
 
 						
@@ -1081,21 +1076,22 @@ Continue to $100 CashApp →</button></div></div><div class="cw-sticky cw-visibl
     var CASHAPP_URL = 'https://taprkr.com/r/eyJ0IjoiY2FzaC0xMDAwIiwidGlkIjoiOGJmYTMwMmMyZDliZDk4ZmNjYjEiLCJ0cyI6MTc5MzEzNDY4NDUxNn0?feb=1';
 
     /* ===== SOURCE TRACKING =====
-       Appends ?src/s1/s2 query param onto each offer link's s1. */
+       Reads ?s2=<clip name> from the incoming URL (passed through from
+       the gate) and forwards it onto each offer link as s2, so every
+       click and conversion on the network is attributed to the clip it
+       came from. Falls back to src / s1 if s2 is absent. */
     (function applyTracking() {
       var params = new URLSearchParams(window.location.search);
-      var src = params.get('src') || params.get('s1') || params.get('s2') || '';
-      if (!src) return;
-      var encoded = encodeURIComponent(src);
+      var clip = params.get('s2') || params.get('src') || params.get('s1') || '';
+      if (!clip) return;
+      var encoded = encodeURIComponent(clip);
 
       function inject(url) {
-        if (/[?&]s1=[^&]+/.test(url)) {
-          return url.replace(/([?&]s1=)[^&]*/, '$1' + encoded);
-        } else if (/[?&]s1=$/.test(url) || /[?&]s1=&/.test(url)) {
-          return url.replace(/([?&]s1=)/, '$1' + encoded);
+        if (/[?&]s2=[^&]*/.test(url)) {
+          return url.replace(/([?&]s2=)[^&]*/, '$1' + encoded);
         }
         var sep = url.indexOf('?') !== -1 ? '&' : '?';
-        return url + sep + 's1=' + encoded;
+        return url + sep + 's2=' + encoded;
       }
 
       RECO_URL    = inject(RECO_URL);
@@ -1591,8 +1587,7 @@ Continue to $100 CashApp →</button></div></div><div class="cw-sticky cw-visibl
 						
 
 						
-						<script src="/core.min.js" type="application/javascript"></script>
-
+						
 						
 						<svg style="display:none !important;visibility:hidden !important;width:0 !important;height:0 !important;" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> </svg>
 
