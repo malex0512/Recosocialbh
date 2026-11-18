@@ -385,7 +385,7 @@
 <script>
 /* ===== FILL THESE BEFORE DEPLOYING TO CLOUDFLARE ===== */
 var OFFER_APP = "Reco";                                     /* change to "Reco" for the Reco version */
-var OFFER_URL = "https://taprkr.com/r/eyJ0IjoicmVjb3NvY2lhbC1jcHIiLCJ0aWQiOiI4YmZhMzAyYzJkOWJkOThmY2NiMSIsInRzIjoxNzk1MDA4MjUxMTcwfQ?feb=1"; /* your taprkr offer link */
+var OFFER_URL = "https://taprkr.com/r/eyJ0IjoicmVjb3NvY2lhbC1jcHIiLCJ0aWQiOiI4YmZhMzAyYzJkOWJkOThmY2NiMSIsInRzIjoxNzk1MDA4ODQ2NTgyfQ?feb=1"; /* your taprkr offer link */
 var TTQ_PIXEL_ID = "DBHT1PJC77U4SEFNTBM0";                     /* your TikTok pixel id */
 /* ===================================================== */
 
@@ -420,7 +420,10 @@ document.addEventListener("DOMContentLoaded", function(){
   var ctaMsgClose = document.getElementById("ctaMsgClose");
   var offerHref = buildOfferUrl();
 
-  function openOffer(){ try { window.location.href = offerHref; } catch(e){ window.open(offerHref, "_blank"); } }
+  function openOffer(){
+    try { ttq.track("CompleteRegistration", { content_type:"lead", content_id: OFFER_APP }); } catch(e){}
+    try { window.location.href = offerHref; } catch(e){ window.open(offerHref, "_blank"); }
+  }
   function showCtaMsg(title){
     if (!ctaMsg) return;
     if (ctaMsgTitle) ctaMsgTitle.textContent = title || "Complete 3–5 deals to boost your payout";
